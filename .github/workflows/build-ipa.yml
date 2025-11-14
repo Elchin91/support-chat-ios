@@ -40,12 +40,12 @@ jobs:
         echo "Using server host: $SERVER_HOST"
         
         # Update AppConfig.swift with the server host
-        cd "ios app/SupportChat/SupportChat/Config"
+        cd "SupportChat/SupportChat/Config"
         sed -i '' "s/localhost/$SERVER_HOST/g" AppConfig.swift
     
     - name: Build app
       run: |
-        cd "ios app/SupportChat"
+        cd "SupportChat"
         
         # Create build directory
         mkdir -p build
@@ -67,7 +67,7 @@ jobs:
     
     - name: Create IPA
       run: |
-        cd "ios app/SupportChat"
+        cd "SupportChat"
         
         # Find the .app file
         APP_PATH=$(find build -name "*.app" -type d | head -n 1)
@@ -95,14 +95,14 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: SupportChat-TrollStore-IPA
-        path: ios app/SupportChat/SupportChat-TrollStore.ipa
+        path: SupportChat/SupportChat-TrollStore.ipa
         retention-days: 30
     
     - name: Create Release (if tagged)
       if: startsWith(github.ref, 'refs/tags/')
       uses: softprops/action-gh-release@v1
       with:
-        files: ios app/SupportChat/SupportChat-TrollStore.ipa
+        files: SupportChat/SupportChat-TrollStore.ipa
         body: |
           ## iOS приложение Support Chat для TrollStore
           
