@@ -24,13 +24,13 @@
 		1D3627C72B3F1A9700E3C4A1 /* SupportChatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportChatApp.swift; sourceTree = "<group>"; };
 		1D3627C92B3F1A9700E3C4A1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1D3627CB2B3F1A9800E3C4A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		1D3627CE2B3F1A9800E3C4A2 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/HomeView.swift; sourceTree = "<group>"; };
-		1D3627D02B3F1A9800E3C4A3 /* PaymentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/PaymentsView.swift; sourceTree = "<group>"; };
-		1D3627D22B3F1A9800E3C4A4 /* AIChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/AIChatView.swift; sourceTree = "<group>"; };
-		1D3627D42B3F1A9800E3C4A5 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/HistoryView.swift; sourceTree = "<group>"; };
-		1D3627D62B3F1A9800E3C4A6 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/ProfileView.swift; sourceTree = "<group>"; };
-		1D3627D82B3F1A9800E3C4A7 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/APIService.swift; sourceTree = "<group>"; };
-		1D3627DA2B3F1A9800E3C4A8 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config/AppConfig.swift; sourceTree = "<group>"; };
+		1D3627CE2B3F1A9800E3C4A2 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		1D3627D02B3F1A9800E3C4A3 /* PaymentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsView.swift; sourceTree = "<group>"; };
+		1D3627D22B3F1A9800E3C4A4 /* AIChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIChatView.swift; sourceTree = "<group>"; };
+		1D3627D42B3F1A9800E3C4A5 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		1D3627D62B3F1A9800E3C4A6 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		1D3627D82B3F1A9800E3C4A7 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		1D3627DA2B3F1A9800E3C4A8 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
