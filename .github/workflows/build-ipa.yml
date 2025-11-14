@@ -58,14 +58,12 @@ jobs:
           -configuration Release \
           -derivedDataPath build \
           -sdk iphoneos \
-          -destination 'generic/platform=iOS' \
           -arch arm64 \
           CODE_SIGN_IDENTITY="" \
           CODE_SIGNING_REQUIRED=NO \
           CODE_SIGNING_ALLOWED=NO \
           DEVELOPMENT_TEAM="" \
           PROVISIONING_PROFILE_SPECIFIER="" \
-          -allowProvisioningUpdates \
           clean build
     
     - name: Create IPA
