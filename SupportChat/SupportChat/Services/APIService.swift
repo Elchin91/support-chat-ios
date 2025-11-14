@@ -36,11 +36,8 @@ class APIService: ObservableObject {
     private var checkTimer: Timer?
     
     init() {
-        // Get server URL from config or use default
-        let serverHost = ProcessInfo.processInfo.environment["SERVER_HOST"] ?? "localhost"
-        let serverPort = ProcessInfo.processInfo.environment["SERVER_PORT"] ?? "3000"
-        
-        self.baseURL = "http://\(serverHost):\(serverPort)"
+        // Get server URL from AppConfig
+        self.baseURL = AppConfig.serverURL
         
         // Start connection check
         startConnectionCheck()

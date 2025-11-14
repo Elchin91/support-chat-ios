@@ -40,8 +40,9 @@ jobs:
         echo "Using server host: $SERVER_HOST"
         
         # Update AppConfig.swift with the server host
-        cd "SupportChat/SupportChat/Config"
-        sed -i '' "s/localhost/$SERVER_HOST/g" AppConfig.swift
+        # Replace localhost with the provided IP
+        sed -i '' "s|\"localhost\"|\"$SERVER_HOST\"|g" SupportChat/SupportChat/Config/AppConfig.swift
+        echo "Updated AppConfig.swift with server host: $SERVER_HOST"
     
     - name: Build app
       run: |
