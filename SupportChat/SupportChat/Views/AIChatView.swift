@@ -262,7 +262,7 @@ class AIChatViewModel: ObservableObject {
     @Published var showError = false
     @Published var errorMessage = ""
     
-    private let apiService = APIService()
+    private let apiService = APIService.shared
     private var cancellables = Set<AnyCancellable>()
     
     func sendMessage(_ text: String) {

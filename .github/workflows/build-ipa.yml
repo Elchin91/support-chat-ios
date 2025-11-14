@@ -39,10 +39,22 @@ jobs:
         fi
         echo "Using server host: $SERVER_HOST"
         
+        # Show current AppConfig.swift content
+        echo "Current AppConfig.swift:"
+        cat SupportChat/SupportChat/Config/AppConfig.swift | grep -A 2 "serverHost"
+        
         # Update AppConfig.swift with the server host
-        # Replace localhost with the provided IP
+        # Replace localhost with the provided IP (handle both quoted and unquoted)
         sed -i '' "s|\"localhost\"|\"$SERVER_HOST\"|g" SupportChat/SupportChat/Config/AppConfig.swift
-        echo "Updated AppConfig.swift with server host: $SERVER_HOST"
+        sed -i '' "s|localhost|$SERVER_HOST|g" SupportChat/SupportChat/Config/AppConfig.swift
+        
+        # Verify the change
+        echo "Updated AppConfig.swift:"
+        cat SupportChat/SupportChat/Config/AppConfig.swift | grep -A 2 "serverHost"
+        
+        if ! grep -q "$SERVER_HOST" SupportChat/SupportChat/Config/AppConfig.swift; then
+          echo "Warning: Server host replacement may have failed"
+        fi
     
     - name: Build app
       run: |
@@ -51,34 +63,51 @@ jobs:
         # Create build directory
         mkdir -p build
         
-        # Build without code signing
+        # List available SDKs
+        echo "Available SDKs:"
+        xcodebuild -showsdks
+        
+        # Build without code signing (using arch instead of destination)
         xcodebuild \
           -project SupportChat.xcodeproj \
           -scheme SupportChat \
           -configuration Release \
           -derivedDataPath build \
           -sdk iphoneos \
-          -destination 'generic/platform=iOS' \
+          -arch arm64 \
           CODE_SIGN_IDENTITY="" \
           CODE_SIGNING_REQUIRED=NO \
           CODE_SIGNING_ALLOWED=NO \
           DEVELOPMENT_TEAM="" \
           PROVISIONING_PROFILE_SPECIFIER="" \
           clean build
+        
+        # Verify build output
+        echo "Checking build output..."
+        find build -name "*.app" -type d | head -5
     
     - name: Create IPA
       run: |
         cd "SupportChat"
         
-        # Find the .app file
-        APP_PATH=$(find build -name "*.app" -type d | head -n 1)
+        # Find the .app file (check multiple possible locations)
+        APP_PATH=$(find build -name "SupportChat.app" -type d | head -n 1)
+        
+        if [ -z "$APP_PATH" ]; then
+          echo "Trying alternative search..."
+          APP_PATH=$(find build -name "*.app" -type d | head -n 1)
+        fi
         
         if [ -z "$APP_PATH" ]; then
           echo "Error: Could not find .app file"
+          echo "Build directory contents:"
+          find build -type f -name "*.swiftmodule" | head -5
+          find build -type d -name "*.app" 2>/dev/null || echo "No .app directories found"
           exit 1
         fi
         
         echo "Found app at: $APP_PATH"
+        ls -la "$APP_PATH" | head -10
         
         # Create Payload directory
         mkdir -p Payload
@@ -86,6 +115,15 @@ jobs:
         
         # Create IPA
         zip -r SupportChat-TrollStore.ipa Payload
+        
+        # Verify IPA was created
+        if [ ! -f "SupportChat-TrollStore.ipa" ]; then
+          echo "Error: IPA file was not created"
+          exit 1
+        fi
+        
+        # Show IPA info
+        ls -lh SupportChat-TrollStore.ipa
         
         # Clean up
         rm -rf Payload

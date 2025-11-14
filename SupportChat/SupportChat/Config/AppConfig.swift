@@ -9,8 +9,9 @@ import Foundation
 
 struct AppConfig {
     // Server Configuration
-    static let serverHost = ProcessInfo.processInfo.environment["SERVER_HOST"] ?? "localhost"
-    static let serverPort = ProcessInfo.processInfo.environment["SERVER_PORT"] ?? "3000"
+    // Note: This value can be replaced during build via sed in CI/CD
+    static let serverHost = "localhost"
+    static let serverPort = "3000"
     static let serverURL = "http://\(serverHost):\(serverPort)"
     static let websocketURL = serverURL
     
