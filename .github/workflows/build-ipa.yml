@@ -68,6 +68,7 @@ jobs:
         xcodebuild -showsdks
         
         # Build without code signing (using arch instead of destination)
+        # Disable asset catalog thinning to avoid simulator runtime issues
         xcodebuild \
           -project SupportChat.xcodeproj \
           -scheme SupportChat \
@@ -80,6 +81,7 @@ jobs:
           CODE_SIGNING_ALLOWED=NO \
           DEVELOPMENT_TEAM="" \
           PROVISIONING_PROFILE_SPECIFIER="" \
+          ASSETCATALOG_COMPILER_OPTIMIZATION="time" \
           clean build
         
         # Verify build output
